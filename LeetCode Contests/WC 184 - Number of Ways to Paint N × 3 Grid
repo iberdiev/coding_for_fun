@@ -1,0 +1,7 @@
+## https://leetcode.com/problems/number-of-ways-to-paint-n-3-grid/ 
+class Solution:
+    def numOfWays(self, n: int) -> int:
+        p1=p2=6
+        for _ in range(n-1):
+            p1,p2=(3*p1+2*p2)%(10**9+7),(2*(p1+p2))%(10**9+7)
+        return (p1+p2)%(10**9+7)

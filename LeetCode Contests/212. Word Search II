@@ -1,0 +1,40 @@
+## https://leetcode.com/problems/word-search-ii/
+
+class TrieNode:
+    def __init__(self):
+        from collections import defaultdict
+        self.children = defaultdict(TrieNode)
+        self.isWord = False
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+    def insert(self,word):
+        node = self.root
+        for c in word:
+            node = node.children[c]
+        node.isWord = True
+
+class Solution:
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        def dfs(board,node,i,j,path, res):
+            if node.isWord:
+                res.append(path)
+                node.isWord = False
+            if i<0 or i>=len(board) or j<0 or j>=len(board[0]):
+                return
+            c = board[i][j]
+            if c not in node.children:
+                return
+            board[i][j] = "#"
+            for ni,nj in (i+1,j),(i-1,j),(i,j+1),(i,j-1):
+                dfs(board, node.children[c], ni, nj, path + c,res)
+            board[i][j] = c
+        res, trie = [], Trie()
+        node = trie.root
+        for w in words:
+            trie.insert(w)
+        for i,row in enumerate(board):
+            for j, c in enumerate(row):
+                dfs(board, node, i, j, "",res)
+        return res
+    
