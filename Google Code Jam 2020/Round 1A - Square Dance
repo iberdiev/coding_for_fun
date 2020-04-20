@@ -1,0 +1,52 @@
+## https://codingcompetitions.withgoogle.com/codejam/round/000000000019fd74/00000000002b1355
+
+class Dancer:
+    def __init__(self, skill=0):
+        self.skill = skill
+        self.nbrs = {"t":None, "b":None,"l":None,"r":None}
+    def n_nbrs(self):
+        return 4 - list(self.nbrs.values()).count(None)
+    def stronger_or_same(self):
+        return self.skill >= sum([0 if nbr is None else nbr.skill for nbr in self.nbrs.values()]) / self.n_nbrs() if self.n_nbrs() else True
+def squareDance(floor, n, m):
+    for i in range(n):
+        for j in range(m):
+            floor[i][j] = Dancer(floor[i][j])
+    for i in range(n):
+        for j in range(m):
+            floor[i][j].nbrs['t'] = None if i == 0 else floor[i-1][j]
+            floor[i][j].nbrs['l'] = None if j == 0 else floor[i][j-1]
+            floor[i][j].nbrs['b'] = None if i == n-1 else floor[i+1][j]
+            floor[i][j].nbrs['r'] = None if j == m-1 else floor[i][j+1]
+    floor = [dancer for row in floor for dancer in row]
+    res = sum([dancer.skill for dancer in floor])
+    dancers_left = len(floor)
+    while True:
+        if n == 1 and m == 1:
+            return res
+        count,toEliminate = 0,[]
+        for i in range(len(floor)):
+            if not floor[i].stronger_or_same():
+                toEliminate.append(i - len(toEliminate))
+        for i in toEliminate:
+            if floor[i].nbrs['t']:
+                floor[i].nbrs['t'].nbrs['b'] = floor[i].nbrs['b']
+            if floor[i].nbrs['b']:
+                floor[i].nbrs['b'].nbrs['t'] = floor[i].nbrs['t']
+            if floor[i].nbrs['l']:
+                floor[i].nbrs['l'].nbrs['r'] = floor[i].nbrs['r']
+            if floor[i].nbrs['r']:
+                floor[i].nbrs['r'].nbrs['l'] = floor[i].nbrs['l']
+            floor.pop(i)
+        if dancers_left == len(floor):
+            return res
+        dancers_left,res=len(floor),res+sum([dancer.skill for dancer in floor])
+for i in range(1, int(input()) + 1):
+    n, m = [int(s) for s in input().split(" ")]
+    print("Case #{}: {}".format(i, squareDance([[int(s) for s in input().split(" ")] for i in range(n)], n, m)))
+
+
+
+# list1=sorted(list1,key = lambda each: each[0])
+
+
