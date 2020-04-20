@@ -3,21 +3,21 @@
 class Dancer:
     def __init__(self, skill=0):
         self.skill = skill
-        self.nbrs = {"t":None, "b":None,"l":None,"r":None}
+        self.nbrs = [0,0,0,0]
     def n_nbrs(self):
-        return 4 - list(self.nbrs.values()).count(None)
+        return 4 - self.nbrs.count(0)
     def stronger_or_same(self):
-        return self.skill >= sum([0 if nbr is None else nbr.skill for nbr in self.nbrs.values()]) / self.n_nbrs() if self.n_nbrs() else True
+        return self.skill >= sum([nbr.skill if nbr else 0 for nbr in self.nbrs])/self.n_nbrs() if self.n_nbrs() else True
 def squareDance(floor, n, m):
     for i in range(n):
         for j in range(m):
             floor[i][j] = Dancer(floor[i][j])
     for i in range(n):
         for j in range(m):
-            floor[i][j].nbrs['t'] = None if i == 0 else floor[i-1][j]
-            floor[i][j].nbrs['l'] = None if j == 0 else floor[i][j-1]
-            floor[i][j].nbrs['b'] = None if i == n-1 else floor[i+1][j]
-            floor[i][j].nbrs['r'] = None if j == m-1 else floor[i][j+1]
+            floor[i][j].nbrs[0] = 0 if i == 0 else floor[i-1][j]
+            floor[i][j].nbrs[2] = 0 if j == 0 else floor[i][j-1]
+            floor[i][j].nbrs[1] = 0 if i == n-1 else floor[i+1][j]
+            floor[i][j].nbrs[3] = 0 if j == m-1 else floor[i][j+1]
     floor = [dancer for row in floor for dancer in row]
     res = sum([dancer.skill for dancer in floor])
     dancers_left = len(floor)
@@ -27,16 +27,17 @@ def squareDance(floor, n, m):
         count,toEliminate = 0,[]
         for i in range(len(floor)):
             if not floor[i].stronger_or_same():
+                pass
                 toEliminate.append(i - len(toEliminate))
         for i in toEliminate:
-            if floor[i].nbrs['t']:
-                floor[i].nbrs['t'].nbrs['b'] = floor[i].nbrs['b']
-            if floor[i].nbrs['b']:
-                floor[i].nbrs['b'].nbrs['t'] = floor[i].nbrs['t']
-            if floor[i].nbrs['l']:
-                floor[i].nbrs['l'].nbrs['r'] = floor[i].nbrs['r']
-            if floor[i].nbrs['r']:
-                floor[i].nbrs['r'].nbrs['l'] = floor[i].nbrs['l']
+            if floor[i].nbrs[0]:
+                floor[i].nbrs[0].nbrs[1] = floor[i].nbrs[1]
+            if floor[i].nbrs[1]:
+                floor[i].nbrs[1].nbrs[0] = floor[i].nbrs[0]
+            if floor[i].nbrs[2]:
+                floor[i].nbrs[2].nbrs[3] = floor[i].nbrs[3]
+            if floor[i].nbrs[3]:
+                floor[i].nbrs[3].nbrs[2] = floor[i].nbrs[2]
             floor.pop(i)
         if dancers_left == len(floor):
             return res
@@ -44,9 +45,3 @@ def squareDance(floor, n, m):
 for i in range(1, int(input()) + 1):
     n, m = [int(s) for s in input().split(" ")]
     print("Case #{}: {}".format(i, squareDance([[int(s) for s in input().split(" ")] for i in range(n)], n, m)))
-
-
-
-# list1=sorted(list1,key = lambda each: each[0])
-
-
