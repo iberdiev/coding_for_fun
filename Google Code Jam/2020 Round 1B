@@ -1,0 +1,19 @@
+## Expogo
+## https://codingcompetitions.withgoogle.com/codejam/round/000000000019fef2/00000000002d5b62
+def expogo(x,y,p=''):
+    if x==y==0:
+        return p
+    if not (x and y):
+        if x:
+            return expogo((x-1)/2,y/2,p+"E") if x > 0 else expogo((x+1)/2,y/2,p+"W")
+        return expogo(x/2,(y-1)/2,p+"N") if y > 0 else expogo(x/2,(y+1)/2,p+"S")
+    if x%2:
+        if ((x-1)/2+y/2)%2:
+            return expogo((x-1)/2,y/2,p+"E")
+        return expogo((x+1)/2,y/2,p+"W")        
+    if (x/2+(y-1)/2)%2:
+        return expogo(x/2,(y-1)/2,p+"N")
+    return expogo(x/2,(y+1)/2,p+"S")
+for i in range(1, int(input()) + 1):
+    x, y = [int(s) for s in input().split(" ")]
+    print("Case #{}: {}".format(i, expogo(x,y) if (x+y)%2==1 else "IMPOSSIBLE" ))

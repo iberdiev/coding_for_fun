@@ -1,0 +1,18 @@
+## Number Guessing
+## https://codingcompetitions.withgoogle.com/codejam/round/0000000000000130
+import sys
+def guess():
+    a,b = map(int, input().split())
+    n=int(input())
+    a+=1
+    while n:
+        n-=1
+        print((a+b)//2)
+        sys.stdout.flush()
+        r = input()
+        if r == "WRONG_ANSWER" or r == "CORRECT":
+            return
+        a=(a+b)//2+1 if r=="TOO_SMALL"else a
+        b=b if r=="TOO_SMALL"else (a+b)//2-1
+for _ in range(int(input())):
+    guess()
