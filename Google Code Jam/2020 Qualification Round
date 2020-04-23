@@ -45,3 +45,33 @@ def parenting_partnering(t):
     return ''.join([i[3] for i in sorted(t,key=lambda x: x[2])]) 
 for i in range(1, int(input())+1):
     print("Case #{}: {}".format(i, parenting_partnering([list(map(int, input().split())) for _ in range(int(input()))])))
+
+## ESAb DATa
+## python interactive_runner.py python3 testing_tool.py 2 -- python codejam.py
+## https://codingcompetitions.withgoogle.com/codejam/round/000000000019fd27/0000000000209a9e
+import sys
+def query(i, nq):
+    print (i+1 if i is not None else 1)
+    sys.stdout.flush()
+    return int(input()), nq+1
+t,b= map(int, input().split())
+for _ in range(t):
+    r, nq, p1, p2 = [0]*b, 0, 0, 0
+    for i in range(b//2):
+        if nq and nq%10 == 0:
+            fr, nq = query(p1, nq)
+            rr, nq = query(p2, nq)
+            if (r[p1]^fr):
+                r = [x^1 for x in r]
+            if (r[p2]^rr):
+                r = r[::-1]
+        r[i], nq = query(i, nq)
+        r[b-i-1], nq = query(b-i-1, nq)
+        if r[i] == r[b-i-1]:
+            p1 = i
+        else:
+            p2 = i
+    print ("".join(map(str, r)))
+    sys.stdout.flush()
+    input()
+    
