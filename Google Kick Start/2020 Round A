@@ -1,0 +1,28 @@
+## Allocation
+## https://codingcompetitions.withgoogle.com/kickstart/round/000000000019ffc7/00000000001d3f56
+def allocation():
+    N, budget = map(int, input().split(' '))
+    houses = sorted(list(map(int, input().split(' '))))
+    quantity = 0
+    while houses and budget >= houses[0]:
+        budget -= houses.pop(0)
+        quantity += 1
+    return quantity
+
+# for i in range(int(input())):
+#     print("Case #{}: {}".format(i+1, allocation()))
+
+## Plates
+## https://codingcompetitions.withgoogle.com/kickstart/round/000000000019ffc7/00000000001d40bb
+def plates():
+    N, K, P = map(int, input().split(' '))
+    stacks = [list(map(int, input().split(' '))) for stack in range(N)]
+    dp, res = [0]*(P+1), 0
+    for i in range(N):		## per stack [0, 1, 2]
+        for j in range(P+1): ## choice options [0, 1, 2, 3]
+            run = 0
+            for m in range(min(K, P-j)): ## min(left to choose ||| plates in stack)
+                run += stacks[i][m]
+                dp[j] = max(dp[j], dp[j+m+1] + run) ## have no idea, need to learn 0-1 knapcack
+    return max(dp)
+for i in range(int(input())): print("Case #{}: {}".format(i+1, plates()))
