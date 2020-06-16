@@ -1,0 +1,28 @@
+# Short notes for ssh + devops tutorial
+# https://www.youtube.com/watch?v=hQWRp-FdTpc
+# https://gist.github.com/bradtraversy/f03df587f2323b50beb4250520089a9e
+
+
+# Generate keys
+ssh-keygen
+
+# keys will be stored in ~/.ssh/id_rsa and ~/.ssh/id_rsa.pub
+# Public key goes into server "authorized_keys" file
+# That's how server know if machine is authorized
+
+# copy public to server
+cat ~/.ssh/id_rsa.pub | ssh user@ip "mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >> ~/.ssh/authorized_keys"
+# Alternatively you can use ssh-copy-id, but need to install that tool first
+
+# ssh-add is a command for adding SSH private keys into the SSH authentication agent
+ssh-add ~/.ssh/id_rsa
+
+
+## Basic Configurations of ssh
+sudo nano /etc/ssh/sshd_config
+
+PermitRootLogin yes
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+PasswordAuthentication yes
+
