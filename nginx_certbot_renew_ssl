@@ -1,0 +1,29 @@
+systemctl stop/start nginx
+systemctl restart nginx
+
+certbot renew
+
+# List of active services and their state
+systemctl list-units -t service
+
+
+## Tutorial from https://certbot.eff.org/lets-encrypt/ubuntubionic-nginx.html
+
+# Add certbot PPA
+sudo apt-get update
+sudo apt-get install software-properties-common
+sudo add-apt-repository universe
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update
+
+# Install certbot
+sudo apt-get install certbot python3-certbot-nginx
+
+# Renew certificates
+sudo certbot renew --dry-run
+# /etc/crontab/
+# /etc/cron.*/*
+# systemctl list-timers
+
+## Get version of linux
+hostnamectls

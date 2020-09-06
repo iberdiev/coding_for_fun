@@ -26,3 +26,12 @@ PubkeyAuthentication yes
 AuthorizedKeysFile .ssh/authorized_keys
 PasswordAuthentication yes
 
+
+cat ~/.ssh/id_rsa.pub | ssh root@139.59.140.73 "mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >> ~/.ssh/authorized_keys"
+
+
+
+
+cat dump_17-06-2020_08_44_17.sql | docker exec -i a142f35db340 psql -U postgres
+####################################################################################
+

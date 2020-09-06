@@ -1,0 +1,23 @@
+https://stackify.com/docker-tutorial/
+docker run hello-world (testing if it's installed)
+docker pull busybox (fetches busybox image)
+docker images (list of all images on system)
+docker run busybox (loads up the container, runs commands in container)
+docker run busybox echo "hello from busybox"
+docker ps (currently running containers)
+docker ps -a (history)
+docker run -it busybox sh (interactive terminal of container) (exit)
+docker rm [container-ID]
+docker rm $(docker ps -a -q -f status=exited) (deletes all exited) containers
+docker container prune (same as above)
+docker rmi [name] (deleting an image)
+docker start wizardly_joliot (running specific image)
+docker start --attach  wizardly_joliot (running + viewing results)
+docker run -it ubuntu bash (running login shell of ubuntu linux)
+docker run -v /full/path/to/html/directory:/usr/share/nginx/html:ro -p 8080:80 -d nginx (starting html file through container)
+docker build -t mynginx . (creating image from dockerfile)
+docker run --name webapp -d -p 8080:8000 mynginx (running a container)
+docker build -t mypyweb .
+docker run --name webapp -p 8080:8000 [image name]
+docker-compose up (-d)
+docker-compose down

@@ -1,0 +1,64 @@
+#How to login
+ssh user@255.255.255.255
+
+#Location of daemon-services
+cd /etc/systemd/system
+
+#Usual location of websites
+cd /var/www/html
+
+#commands for actions on services
+service [serviceName] status
+service [serviceName] stop
+service [serviceName] start
+service [serviceName] restart
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#running Celery as a daemon service
+[Unit]
+Description=Celery for Diary Django runned via daemon
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=deployer
+WorkingDirectory=/var/www/html/diaryDjango/diary
+ExecStart=/var/www/html/diaryDjango/myvenv/bin/celery -A diary worker -B -l info
+
+[Install]
+WantedBy=multi-user.target
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#running Django as a daemon service
+[Unit]
+Description=Django Server is launched via this daemon
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=deployer
+ExecStart=/var/www/html/diaryDjango/myvenv/bin/python /var/www/html/diaryDjango/diary/m$
+
+[Install]
+WantedBy=multi-user.target
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#running React as a daemon service
+
+[Unit]
+Description=React Server is launched via this daemon
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=installer
+ExecStart=/usr/local/bin/serve -s /var/www/html/diaryReact/diaryReact/build -l 5000
+
+[Install]
+WantedBy=multi-user.target

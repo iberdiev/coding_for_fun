@@ -1,0 +1,9 @@
+heroku login
+heroku run bash
+git push heroku master
+
+
+heroku plugins:install https://github.com/naaman/heroku-vim
+heroku vim
+
+
