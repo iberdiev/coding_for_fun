@@ -1,0 +1,1151 @@
+//////////////////////////////// Java NoteBook: Java Basics based on "Java: How to Program (Early objects) 11th edition"
+
+//////////////////////////////// COMMENTING + PRINTING
+
+// This is as end-line comment
+
+/*
+This is a block comment.
+*/
+
+//public class Main {
+//    public static void main(String[] args) {
+//        System.out.println("Hi there.\n\\\\ This is not a comment!"); // prints into console + newline
+//        System.out.print("\"Hi there.\""); // prints into console
+//        System.out.printf("\n%s\n%s", "Welcome to", "Java Programming!"); // formatted printing
+//    }
+//}
+
+//////////////////////////////// ARITHMETICS + INTEGER INPUT
+//import java.util.Scanner; // required to get the input
+//public class Main {
+//    public static void main(String[] args) {
+//        Scanner input = new Scanner(System.in); // create a Scanner to get the input
+//        System.out.print("Enter the 1st integer: ");
+//        int a = input.nextInt();
+//        System.out.print("Enter the 2nd integer: ");
+//        int b;
+//        b = input.nextInt();
+//        int sum = a + b;
+//        System.out.printf("Summation: %d + %d = %d%n", a, b, sum);
+//        System.out.printf("Subtraction: %d - %d = %d%n", a, b, a - b);
+//        System.out.printf("Multiplication: %d * %d = %d%n", a, b, a * b);
+//        System.out.printf("Division: %d / %d = %d%n", a, b, a / b);
+//        System.out.printf("Remainder: %d / %d = %d%n", a, b, a % b);
+//    }
+//}
+//////////////////////////////// EQUALITY AND RELATIONAL OPERATORS
+
+//import java.util.Scanner;
+//public class Main {
+//    public static void main (String[] args) {
+//        Scanner input = new Scanner(System.in);
+//        System.out.printf("Enter the 1st integer: ");
+//        int a = input.nextInt();
+//        System.out.printf("Enter the 2nd integer: ");
+//        int b = input.nextInt();
+//        if (a == b) System.out.printf("%d = %d%n", a, b);
+//        if (a != b) System.out.printf("%d != %d%n", a, b);
+//        if (a > b) System.out.printf("%d > %d%n", a, b);
+//        if (a < b) System.out.printf("%d < %d%n", a, b);
+//        if (a >= b) {
+//            System.out.printf("%d >= %d%n", a, b);
+//        }
+//        if (a <= b) {System.out.printf("%d <= %d%n", a, b);}
+//    }
+//}
+
+//////////////////////////////// CLASSES + UML CLASS DIAGRAM, OBJECTS, METHODS
+//import java.util.Scanner;
+//
+// class Account {
+//    private String name;
+//    private double balance;
+//    public Account(String name, double balance) {
+//        this.name = name;
+//        if (balance > 0.0) {
+//            this.balance = balance;
+//        }
+//    }
+//     public void setName(String name) {
+//        this.name = name;
+//    }
+//    public String getName() {
+//        return name;
+//    }
+//    public void deposit(double depositAmount) {
+//        if (depositAmount > 0.0) {
+//            balance = balance + depositAmount;
+//        }
+//    }
+//    public double getBalance() {
+//        return balance;
+//    }
+//}
+//
+///*
+//
+//UML class diagram of Account
+//- name: String
+//- balance: double
+//"constructor" Account(name: String, balance: double)
+//+ setName(name: String)
+//+ getName(): String
+//+ deposit(depositAmount: double)
+//+ getBalance(): double
+//
+//*/
+//
+//public class AccountTest {
+//    public static void main(String[] args) {
+//        Scanner input = new Scanner(System.in);
+//        Account account1 = new Account("Jane Gree", 50);
+//        Account account2 = new Account("John Blue", -7.53);
+//        System.out.printf("%s has balance of %.2f $, which is %.2f more %s's balance.\n",
+//                account1.getName(), account1.getBalance(), account1.getBalance() - account2.getBalance(), account2.getName());
+//        System.out.printf("Amount to deposit to %s's balance: ", account1.getName());
+//        account1.deposit(input.nextDouble());
+//        System.out.printf("Depositing...\n");
+//        System.out.printf("%s has balance of %.2f $, which is %.2f more %s's balance.\n",
+//                account1.getName(), account1.getBalance(), account1.getBalance() - account2.getBalance(), account2.getName());
+//    }
+//}
+
+//////////////////////////////// if else (LETTER GRADE EXAMPLE)
+//class Student {
+//    private String name;
+//    private double average;
+//    public Student(String name, double average) {
+//        this.name = name;
+//        if (average > 0) {
+//            if (average <= 100) {
+//                this.average = average;
+//            }
+//        }
+//    }
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+//    public String getName() {
+//        return name;
+//    }
+//    public void setAverage(double studentAverage) {
+//        if (studentAverage > 0) {
+//            if (studentAverage <= 100) {
+//                average = studentAverage;
+//            }
+//        }
+//    }
+//    public double getAverage() {
+//        return average;
+//    }
+//    public String getLetterGrade() {
+//        String letterGrade = "";
+//        if (average >= 90) {
+//            letterGrade = "A";
+//        } else if (average >= 80) {
+//            letterGrade = "B";
+//        } else if (average >= 70) {
+//            letterGrade = "C";
+//        } else if (average >= 60) {
+//            letterGrade = "D";
+//        } else {
+//            letterGrade = "F";
+//        }
+//        return letterGrade;
+//    }
+//}
+//
+//public class StudentTest {
+//    public static void main(String[] args) {
+//        Student a = new Student("Alex", 92.5);
+//        Student b = new Student("Mike", 72.5);
+//        System.out.printf("%s's letter grade is %s%n", a.getName(), a.getLetterGrade());
+//        System.out.printf("%s's letter grade is %s%n", b.getName(), b.getLetterGrade  ());
+//    }
+//}
+
+//////////////////////////////// WHILE LOOP WITH SENTIMENT (CLASS AVERAGE EXAMPLE)
+//import java.util.Scanner;
+//
+//public class ClassAverage {
+//    public static void main(String[] args) {
+//        Scanner input = new Scanner(System.in);
+//        int total = 0;
+//        int gradeCounter = 0;
+//        System.out.println("Enter grade of -1 to quit:");
+//        int grade = input.nextInt();
+//        while (grade != -1) {
+//            total = total + grade;
+//            gradeCounter = gradeCounter + 1;
+//            grade = input.nextInt();
+//        }
+//        if (gradeCounter > 0) {
+//            float average = (float) total / gradeCounter;
+//            System.out.printf("%nTotal of all %d grades is %d.", gradeCounter, total);
+//            System.out.printf("%nClass average is %f.", average);
+//        } else {
+//            System.out.printf("No given grades.");
+//        }
+//    }
+//}
+
+//////////////////////////////// WHILE LOOP + IF ELSE
+//import java.util.Scanner;
+//
+//public class Analysis {
+//    public static void main(String[] args) {
+//        Scanner input = new Scanner(System.in);
+//        int passes = 0;
+//        int failures = 0;
+//        int studentCounter = 0;
+//        while (studentCounter < 10) {
+//            System.out.printf("Enter result (1 = pass, 2 = fail): ");
+//            if (input.nextInt() == 1) {
+//                passes = passes + 1;
+//            } else {
+//                failures = failures + 1;
+//            }
+//            studentCounter = studentCounter + 1;
+//        }
+//        System.out.printf("Passed: %d%nFailed: %d", passes, failures);
+//        if (passes > 8) {
+//            System.out.println("\nBonus to the instructor!");
+//        }
+//    }
+//}
+//////////////////////////////// (PRE/POST)(IN/DE)CREMENTING:
+//public class Increment {
+//    public static void main(String[] args) {
+//        int num = 5;
+//        System.out.printf("Before pre-increment: %d%n", num);
+//        System.out.printf("During pre-increment: %d%n", ++num);
+//        System.out.printf("After pre-increment: %d%n%n", num);
+//        System.out.printf("Before post-increment: %d%n", num);
+//        System.out.printf("During post-increment: %d%n", num++);
+//        System.out.printf("After post-increment: %d%n", num);
+//    }
+//}
+//////////////////////////////// FOR COUNTER
+//public class ForCounter {
+//    public static void main(String[] args) {
+//        for (int i = 1; i <= 10; i++) {
+//            System.out.printf("%d%n", i);
+//        }
+//    }
+//}
+//////////////////////////////// FOR LOOP (INTEREST EXAMPLE) + printf("%,(-)20.2f.")
+//public class Interest {
+//    public static void main(String[] args) {
+//        double principal = 1000;
+//        double rate = 0.05;
+//        int years = 10;
+//        System.out.printf("%s%20s%n", "Year", "Amount on deposit");
+//        for (int i = 1; i <= years; i++) {
+//            principal = principal * (1 + rate);
+//            System.out.printf("%-4d%,20.2f%n", i, principal);
+//        }
+//        System.out.printf("After %d years, you will earn %.2f dollars.", years, principal);
+//    }
+//}
+//// http://javamoney.github.io/ library that may be effective to handle some money operation errors (e.g. rounding floating point problem)
+//////////////////////////////// DO WHILE
+//public class DoWhileTest {
+//    public static void main(String[] args) {
+//        int i = 1;
+//        do {
+//            System.out.println(i++);
+//        } while (i <= 10);
+//    }
+//}
+//////////////////////////////// input.hasNext() + switch int (CLASS GRADE REPORT)
+//import java.util.Scanner;
+//public class LetterGrades {
+//    public static void main(String[] args) {
+//        Scanner input = new Scanner(System.in);
+//        int total = 0;
+//        int gradeCounter = 0;
+//        int aCount = 0;
+//        int bCount = 0;
+//        int cCount = 0;
+//        int dCount = 0;
+//        int fCount = 0;
+//        System.out.printf("%s%n%s%n %s%n %s%n",
+//                "Enter the integer grades in the range 0-100.",
+//                "Type the end-of-file indicator to terminate input:",
+//                "On UNIX/Linux/macOS type <Ctrl> d then press Enter",
+//                "On Windows type <Ctrl> z then press Enter");
+//        while (input.hasNext()) {
+//            int grade = input.nextInt();
+//            total += grade;
+//            gradeCounter++;
+//            switch (grade / 10) {
+//                case 9:
+//                case 10:
+//                    aCount++;
+//                    break;
+//                case 8:
+//                    bCount++;
+//                    break;
+//                case 7:
+//                    cCount++;
+//                    break;
+//                case 6:
+//                    dCount++;
+//                    break;
+//                default:
+//                    fCount++;
+//                    break; // optional
+//            }
+//        }
+//        System.out.printf("%nGrade Report:%n");
+//        if (gradeCounter != 0) {
+//            double average = (double) total / gradeCounter;
+//            System.out.printf("Total of the %d grades entered is %d%n", gradeCounter, total);
+//            System.out.printf("Class average is %.2f%n", average);
+//            System.out.printf("%n%s%n%s%d%n%s%d%n%s%d%n%s%d%n%s%d%n",
+//                    "Number of students who received each grade:",
+//                    "A: ", aCount, // display number of A grades
+//                    "B: ", bCount, // display number of B grades
+//                    "C: ", cCount, // display number of C grades
+//                    "D: ", dCount, // display number of D grades
+//                    "F: ", fCount); // display number of F grades
+//        } else {
+//            System.out.println("No grades were entered");
+//        }
+//    }
+//}
+//////////////////////////////// PRINT ARGS
+//public class PrintArgs {
+//    public static void main(String[] args) {
+//        for (int i = 0; i < args.length; i++) {
+//            System.out.println(args[i]);
+//        }
+//    }
+//}
+//// java PrintArgs arg1 arg2 etc.
+//////////////////////////////// switch String (AutoPolicy) + using static method in main
+//class AutoPolicy {
+//    private int accountNumber;
+//    private String makeAndModel;
+//    private String state;
+//    public AutoPolicy(int accountNumber, String makeAndModel, String state) {
+//        this.accountNumber = accountNumber;
+//        this.makeAndModel = makeAndModel;
+//        this.state = state;
+//    }
+//    public void setAccountNumber(int accountNumber) {
+//        this.accountNumber = accountNumber;
+//    }
+//    public int getAccountNumber() {
+//        return accountNumber;
+//    }
+//    public void setMakeAndModel(String makeAndModel) {
+//        this.makeAndModel = makeAndModel;
+//    }
+//    public String getMakeAndModel() {
+//        return makeAndModel;
+//    }public void setState(String state) {
+//        this.state = state;
+//    }
+//    public String getState() {
+//        return state;
+//    }
+//    public boolean isNoFaultState() {
+//        boolean noFaultState;
+//        switch (getState()) {
+//            case "MA": case "NJ": case "NY": case "PA":
+//                noFaultState = true;
+//                break;
+//            default:
+//                noFaultState = false;
+//        }
+//        return noFaultState;
+//    }
+//}
+//
+//public class AutoPolicyTest {
+//    public static void main(String[] args) {
+//        AutoPolicy policy1 = new AutoPolicy(11111111, "Toyota Camry", "NJ");
+//        AutoPolicy policy2 = new AutoPolicy(22222222, "Ford Fusion", "ME");
+//        policyInNoFaultState(policy1);
+//        policyInNoFaultState(policy2);
+//    }
+//    public static void policyInNoFaultState(AutoPolicy policy) {
+//        System.out.printf("Account #: %d; Car: %s;%nState %s %s a no-fault state%n%n",
+//                policy.getAccountNumber(), policy.getMakeAndModel(), policy.getState(),
+//                (policy.isNoFaultState() ? "is": "is not"));
+//    }
+//}
+
+//////////////////////////////// BREAK
+//public class BreakTest {
+//    public static void main(String[] args) {
+//        int i;
+//        for (i = 0; i <= 10; i++) {
+//            if (i == 5) { break; }
+//            System.out.println(i);
+//        }
+//        System.out.printf("Broke out of loop at count = %d%n", i);
+//    }
+//}
+//////////////////////////////// CONTINUE
+//public class ContinueTest {
+//    public static void main(String[] args) {
+//        for (int i = 1; i <= 10; i++) {
+//            if (i == 5) { continue; }
+//            System.out.println(i);
+//        }
+//        System.out.printf("%nUsed continue to skip printing 5%n");
+//    }
+//}
+//////////////////////////////// LOGICAL OPERATORS
+/*
+&& - and (short)
+|| - or (short)
+& - and (both)
+| - or (both)
+^ - xor
+! - not
+*/
+//////////////////////////////// MATH CLASS
+//public class MathClass {
+//    public static void main(String[] args) {
+//        System.out.printf("abs(-4) = %d%n", Math.abs(-4));
+//        System.out.printf("ceil(9.2) = %.1f%n", Math.ceil(9.2));
+//        System.out.printf("cos(0) = %.1f%n", Math.cos(0));
+//        System.out.printf("exp(1) = %.5f%n", Math.exp(1));
+//        System.out.printf("floor(25.9) = %.1f%n", Math.floor(25.9));
+//        System.out.printf("log(e*e) = %.1f%n", Math.log(Math.E * Math.E));
+//        System.out.printf("max(1.1, 1.11) = %.2f%n", Math.max(1.1, 1.11));
+//        System.out.printf("min(1.1, 1.11) = %.1f%n", Math.min(1.1, 1.11));
+//        System.out.printf("pow(2, 8) = %.0f%n", Math.pow(2, 8));
+//        System.out.printf("sin(0) = %.0f%n", Math.sin(0));
+//        System.out.printf("sqrt(25) = %.0f%n", Math.sqrt(25));
+//        System.out.printf("tan(0) = %.0f%n", Math.tan(0));
+//        System.out.printf("PI = %.5f%n", Math.PI);
+//        System.out.printf("E = %.5f%n", Math.E);
+//    }
+//}
+//////////////////////////////// SEVERAL ARGUMENTS IN METHOD
+//import java.util.Scanner;
+//public class MaximumFinder {
+//    public static void main(String[] args) {
+//        Scanner input = new Scanner(System.in);
+//        System.out.printf("Input 3 real numbers: ");
+//        double n1 = input.nextDouble();
+//        double n2 = input.nextDouble();
+//        double n3 = input.nextDouble();
+//        System.out.printf("Maximum of %.2f, %.2f and %.2f is %.2f",
+//                n1, n2, n3, maximum(n1, n2, n3));
+//    }
+//    public static double maximum(double n1, double n2, double n3) {
+//        return Math.max(n1, Math.max(n2, n3));
+//    }
+//}
+//////////////////////////////// RANDOM NUMBER GENERATION (rolling dice 20 times)
+//import java.security.SecureRandom;
+//public class RandomIntegers {
+//    public static void main(String[] args) {
+//        SecureRandom randomNumbers = new SecureRandom();
+//        for (int i = 1; i <= 20; i++) {
+//            int face = randomNumbers.nextInt(6) + 1;
+//            System.out.print(face + " ");
+//            if (i % 5 == 0) {
+//                System.out.println();
+//            }
+//        }
+//    }
+//}
+//////////////////////////////// RANDOM NUMBER GENERATION (rolling dice 60,000,000 times to check the bias of the secure random)
+//import java.security.SecureRandom;
+//public class RollDie {
+//    public static void main(String[] args) {
+//        SecureRandom randomNumbers = new SecureRandom();
+//        int n = 60_000_000;
+//        int[] freqs = new int[] {0, 0, 0, 0, 0, 0};
+//        for (int i = 1; i <= n; i++) {
+//            freqs[randomNumbers.nextInt(6)]++;
+//        }
+//        System.out.printf("Face\tFrequency\t\t%%%n");
+//        for (int i=0; i<freqs.length; i++)
+//        {
+//            System.out.printf("%d\t\t%10d\t\t%.5f%n", 1 + i, freqs[i], (double) freqs[i] / n);
+//        }
+//    }
+//}
+//////////////////////////////// Implementation of "Craps" dice game + (enum vs final)
+//import java.security.SecureRandom;
+//public class Craps {
+//    private static final SecureRandom randomNumbers = new SecureRandom();
+//    private enum Status {CONTINUE, WON, LOST};
+//    private static final int SEVEN = 7;
+//    private static final int YO_LEVEN = 11;
+//    private static final int SNAKE_EYES = 2;
+//    private static final int TREY = 3;
+//    private static final int BOX_CARS = 12;
+//    public static void main(String[] args) {
+//        int myPoint = 0;
+//        Status gameStatus;
+//        int sumOfDice = rollDice();
+//        switch (sumOfDice) {
+//            case SEVEN: case YO_LEVEN:
+//                gameStatus = Status.WON;
+//                break;
+//            case SNAKE_EYES:
+//            case TREY:
+//            case BOX_CARS:
+//                gameStatus = Status.LOST;
+//                break;
+//            default:
+//                gameStatus = Status.CONTINUE;
+//                myPoint = sumOfDice;
+//                System.out.printf("Point is %d%n", myPoint);
+//        }
+//        while (gameStatus == Status.CONTINUE) {
+//            sumOfDice = rollDice();
+//            if (sumOfDice == myPoint) {
+//                gameStatus = Status.WON;
+//            } else {
+//                if (sumOfDice == SEVEN) {
+//                    gameStatus = Status.LOST;
+//                }
+//            }
+//        }
+//        if (gameStatus == Status.WON) {
+//            System.out.println("Player wins");
+//        } else {
+//            System.out.println("Player loses");
+//        }
+//    }
+//    public static int rollDice() {
+//        int sum = 2 + randomNumbers.nextInt(6) + randomNumbers.nextInt(6);
+//        System.out.printf("Sum of roll is %d%n", sum);
+//        return sum;
+//    }
+//}
+//////////////////////////////// METHOD OVERLOADING
+//public class MethodOverload {
+//    public static void main(String[] args) {
+//        System.out.println("Square of 5 is " + square(5));
+//        System.out.println("Square of 5.5 is " + square(5.5));
+//    }
+//    public static int square(int n) {
+//        return n * n;
+//    }
+//    public static double square(double n) {
+//        return n * n;
+//    }
+//}
+//////////////////////////////// Array Initialization
+//public class InitArray {
+//    public static void main(String[] args) {
+//        int[] array1 = new int[5];
+//        int[] array2 = {1,2,3,4,5};
+//        System.out.printf("%s%8s%n", "Index", "Value");
+//        for (int i = 0; i < array1.length; i++) {
+//            System.out.printf("%5d%8d%n", i, array1[i]);
+//        }
+//        for (int i = 0; i < array2.length; i++) {
+//            array2[i] = array2[i] * array2[i];
+//            System.out.printf("%5d%8d%n", i, array2[i]);
+//        }
+//
+//    }
+//}
+//////////////////////////////// Roll Die with Arrays
+//import java.security.SecureRandom;
+//public class RollDie {
+//    public static void main(String[] args) {
+//        SecureRandom randomNumbers = new SecureRandom();
+//        int[] frequency = new int[6];
+//        for (int roll = 1; roll <= 60_000_000; roll++) {
+//            ++frequency[randomNumbers.nextInt(6)];
+//        }
+//        System.out.printf("%s%10s%n", "Face", "Frequency");
+//        for (int face = 1; face < frequency.length; face++) {
+//            System.out.printf("%4d%10d%n", face + 1, frequency[face]);
+//        }
+//    }
+//}
+//////////////////////////////// Deck of Cards with Arrays
+//import java.security.SecureRandom;
+//
+//class Card {
+//    private final String face, suit;
+//    public Card(String cardFace, String cardSuit) {
+//        this.face = cardFace;
+//        this.suit = cardSuit;
+//    }
+//    public String toString() {
+//        return face + " of " + suit;
+//    }
+//}
+//class DeckOfCards {
+//    private static final SecureRandom randomNumber = new SecureRandom();
+//    private static final int NUMBER_OF_CARDS = 52;
+//    private Card[] deck = new Card[NUMBER_OF_CARDS];
+//    private int currentCard = 0;
+//    public DeckOfCards() {
+//        String[] faces = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
+//        String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
+//        for (int i = 0; i < deck.length; i++) deck[i] = new Card(faces[i % 13], suits[i / 13]);
+//    }
+//    public void shuffle() {
+//        currentCard = 0;
+//        for (int i = 0; i < deck.length; i++) {
+//            int j = randomNumber.nextInt(NUMBER_OF_CARDS);
+//            Card temp = deck[i];
+//            deck[i] = deck[j];
+//            deck[j] = temp;
+//        }
+//    }
+//    public Card dealCard() {
+//        if (currentCard < deck.length) return deck[currentCard++];
+//        else return null;
+//    }
+//}
+//
+//public class DeckOfCardsTest {
+//    public static void main(String[] args) {
+//        DeckOfCards myDeckOfCards = new DeckOfCards();
+//        myDeckOfCards.shuffle();
+//        for (int i = 0; i < 52; i++)
+//            System.out.printf((i % 4 == 0 ? "%n" : "") + "%-19s", myDeckOfCards.dealCard());
+//
+//    }
+//}
+//////////////////////////////// Enhanced for statement
+//public class EnhancedForTest {
+//    public static void main(String[] args) {
+//        int[] array = {87, 68, 94, 100, 83, 78, 85, 91, 76, 87};
+//        int total = 0;
+//        for (int n : array) total += n;
+//    }
+//}
+//////////////////////////////// Passing array to a method
+//public class PassArray {
+//    public static void main(String[] args) {
+//        int[] array = {1,2,3,4,5};
+//        for (int n: array) System.out.printf("%d ", n);
+//        doubleArray(array);
+//        System.out.println();
+//        for (int n: array) System.out.printf("%d ", n);
+//
+//    }
+//    public static void doubleArray(int[] array) {
+//        for (int i = 0; i < array.length; i++) array[i] *= 2;
+//    }
+//}
+//////////////////////////////// Multidimensional array
+//public class InitArray {
+//    public static void main(String[] args) {
+//        int[][] array1 = {{1,2,3}, {4,5,6}};
+//        int[][] array2 = new int[2][];
+//        array2[0] = new int[1];
+//        array2[1] = new int[2];
+//        toString(array1);
+//        toString(array2);
+//    }
+//    public static void toString(int[][] array) {
+//        for (int[] i : array) {
+//            System.out.println();
+//            for (int j : i)
+//                System.out.printf("%d ", j);
+//        }
+//    }
+//}
+//////////////////////////////// Using command line args
+//public class InitArray {
+//    public static void main(String[] args) {
+//        if (args.length != 3) {
+//            System.out.printf("Error: Please re-enter the entire command, including%n" + "an array size, initial value and increment.%n");
+//        } else {
+//            int arrayLength = Integer.parseInt(args[0]);
+//            int[] array = new int[arrayLength];
+//            int initialValue = Integer.parseInt(args[1]);
+//            int increment = Integer.parseInt(args[2]);
+//            for (int counter = 0; counter < array.length; counter++) {
+//                array[counter] = initialValue + increment * counter;
+//            }
+//            for (int n : array) System.out.printf("%d ", n);
+//        }
+//    }
+//}
+//////////////////////////////// class Arrays (do not reinvent the wheel)
+//import java.util.Arrays;
+//
+//public class ArrayManipulations {
+//    public static void main(String[] args) {
+//        double[] sortedDoubleArray = {8.4, 9.3, 0.2, 7.9, 3.4};
+//        Arrays.sort(sortedDoubleArray);
+//        for (double i : sortedDoubleArray) System.out.printf("%.1f ", i);
+//        System.out.println();
+//        int[] filledIntArray = new int[10];
+//        Arrays.fill(filledIntArray, 7);
+//        for (int i : filledIntArray) System.out.printf("%d ", i);
+//        System.out.println();
+//        int[] intArray = {1,2,3,4,5};
+//        int[] intArrayCopy = new int[intArray.length];
+//        System.arraycopy(intArray, 0, intArrayCopy, 0, intArray.length);
+//        for (int i : intArrayCopy) System.out.printf("%d ", i);
+//        System.out.println();
+//        System.out.printf("intArray = intArrayCopy is %b%n", Arrays.equals(intArray, intArrayCopy));
+//        int location = Arrays.binarySearch(intArray, 5);
+//        System.out.printf("%s", (location >= 0 ? "Was found at index " + location : "Was not found."));
+//    }
+//}
+//////////////////////////////// Collections and ArrayList
+//import java.util.ArrayList;
+//public class ArrayListCollection {
+//    public static void main(String[] args) {
+//        ArrayList<String> items = new ArrayList<String>();
+//        items.add("red");
+//        items.add(0, "yellow");
+//        items.remove("yellow");
+//        items.remove(0);
+//        boolean containsRed = items.contains("red");
+//        display(items);
+//    }
+//    public static void display(ArrayList arrayList) {
+//        for (int i = 0; i < arrayList.size(); i++) System.out.printf("%s ", arrayList.get(i));
+//        System.out.println();
+//    }
+//}
+//////////////////////////////// throw an exception + try catch + ex.getMessage() + constructor overloading
+//class Time1 {
+//    private int hour;
+//    private int minute;
+//    private int second;
+//    public Time1() { this(0, 0, 0); }
+//    public Time1(int hour) {this(hour, 0, 0); }
+//    public Time1(int hour, int minute) {this(hour, minute, 0); }
+//    public Time1(int hour, int minute, int second) {
+//        if (hour < 0 || hour > 23 || minute < 0 || minute > 59 || second < 0 || second > 59) {
+//            throw new IllegalArgumentException("hour, minute and/or second was out of range");
+//        }
+//        this.hour = hour;
+//        this.minute = minute;
+//        this.second = second;
+//    }
+//    public Time1(Time1 time) {
+//        this(time.hour, time.minute, time.second);
+//    }
+//    public void setTime(int hour, int minute, int second) {
+//        if (hour < 0 || hour > 23 || minute < 0 || minute > 59 || second < 0 || second > 59) {
+//            throw new IllegalArgumentException("hour, minute and/or second was out of range");
+//        }
+//        this.hour = hour;
+//        this.minute = minute;
+//        this.second = second;
+//    }
+//    public String toUniversalString() {
+//        return String.format("%02d:%02d:%02d", hour, minute, second);
+//    }
+//    public String toString() {
+//        return String.format("%d:%02d:%02d %s", ((hour == 0 || hour == 12) ? 12 : hour % 12),
+//                minute, second, (hour < 12 ? "AM" : "PM"));
+//    }
+//}
+//public class Time1Test {
+//    public static void main(String[] args) {
+//        Time1 time = new Time1();
+//        displayTime("After time object is created", time);
+//        System.out.println();
+//        time.setTime(13, 27, 6);
+//        displayTime("After calling setTime", time);
+//        System.out.println();
+//        try {
+//            time.setTime(99, 99, 99);
+//        } catch (IllegalArgumentException ex){
+//            System.out.printf("Exception: %s%n%n", ex.getMessage());
+//        }
+//    }
+//    private static void displayTime(String header, Time1 t) {
+//        System.out.printf("%s%nUniversal time: %s%nStandard time: %s%n", header, t.toUniversalString(), t.toString());
+//    }
+//}
+//////////////////////////////// enum
+//import java.util.EnumSet;
+//enum Book {
+//    JHTP("Java How to Program", "2018"),
+//    CHTP("C How to Program", "2016"),
+//    IW3HTP("Internet & World Wide Web How to Program", "2012"),
+//    CPPHTP("C++ How to Program", "2017"),
+//    VBHTP("Visual Basic How to Program", "2014"),
+//    CSHARPHTP("Visual C# How to Program", "2017");
+//    private final String title;
+//    private final String copyrightYear;
+//    Book(String title, String copyrightYear) {
+//        this.title = title;
+//        this.copyrightYear = copyrightYear;
+//    }
+//    public String getTitle() {
+//        return title;
+//    }
+//    public String getCopyrightYear() {
+//        return copyrightYear;
+//    }
+//}
+//public class EnumTest {
+//    public static void main(String[] args) {
+//        System.out.println("All books:");
+//        for (Book book : Book.values()) {
+//            System.out.printf("%-10s%-45s%s%n", book, book.getTitle(), book.getCopyrightYear());
+//        }
+//        System.out.printf("%nDisplay a range of enum constants:%n");
+//        for (Book book : EnumSet.range(Book.JHTP, Book.CPPHTP)) {
+//            System.out.printf("%-10s%-45s%s%n", book, book.getTitle(), book.getCopyrightYear());
+//        }
+//    }
+//}
+//////////////////////////////// COMPOSITION
+
+//class MyPoint {
+//    private int x = 0;
+//    private int y = 0;
+//    public MyPoint() {
+//        this(0, 0);
+//    }
+//    public MyPoint(int x, int y) {
+//        this.x = x;
+//        this.y = y;
+//    }
+//    public int getX() {
+//        return x;
+//    }
+//    public void setX(int x) {
+//        this.x = x;
+//    }
+//    public int getY() {
+//        return y;
+//    }
+//    public void setY(int y) {
+//        this.y = y;
+//    }
+//    public int[] getXY() {
+//        int[] XY = {x, y};
+//        return XY;
+//    }
+//    public void setXY(int x, int y) {
+//        this.x = x;
+//        this.y = y;
+//    }
+//    public String toString() {
+//        return String.format("(%d,%d)", x, y);
+//    }
+//    public double distance(int x, int y) {
+//        return Math.pow(Math.pow(this.x - x, 2) + Math.pow(this.y - y, 2), 0.5);
+//    }
+//    public double distance(MyPoint another) {
+//        return distance(another.x, another.y);
+//    }
+//    public double distance() {
+//        return (distance(0, 0));
+//    }
+//}
+//
+//class MyTriangle {
+//    private MyPoint v1;
+//    private MyPoint v2;
+//    private MyPoint v3;
+//    public MyTriangle(int x1, int y1, int x2, int y2, int x3, int y3) {
+//        this(new MyPoint(x1, y1), new MyPoint(x2,y2), new MyPoint(x3,y3));
+//    }
+//
+//    public MyTriangle(MyPoint v1, MyPoint v2, MyPoint v3) {
+//        this.v1 = v1;
+//        this.v2 = v2;
+//        this.v3 = v3;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return String.format("v1=%s,v2=%s,v3=%s", v1, v2, v3);
+//    }
+//    public double getPerimeter() {
+//        return v1.distance(v2) + v1.distance(v3) + v2.distance(v3);
+//    }
+//    public String getType() {
+//        double d1 = v1.distance(v2), d2 = v1.distance(v3), d3 = v2.distance(v3);
+//        if (d1 == d2 && d2 == d3 && d1 == d3) return "equilateral";
+//        return ((d1 != d2 && d2 != d3 && d1 != d3) ? "scalene": "isosceles");
+//    }
+//}
+//
+
+//////////////////////////////// INHERITANCE
+
+//class Shape {
+//    private String color = "red";
+//    private boolean filled = true;
+//    public Shape() {}
+//
+//    public Shape(String color, boolean filled) {
+//        this.color = color;
+//        this.filled = filled;
+//    }
+//
+//    public String getColor() {
+//        return color;
+//    }
+//
+//    public void setColor(String color) {
+//        this.color = color;
+//    }
+//
+//    public boolean isFilled() {
+//        return filled;
+//    }
+//
+//    public void setFilled(boolean filled) {
+//        this.filled = filled;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return String.format("Shape[color=%s,filled%b]", color, filled);
+//    }
+//
+//}
+//
+//class Circle extends Shape {
+//    private double radius = 1;
+//    public Circle(){}
+//    public Circle(double radius) {
+//        this.radius = radius;
+//    }
+//    public Circle(double radius, String color, boolean filled) {
+//        this.radius = radius;
+//        setColor(color);
+//        setFilled(filled);
+//    }
+//
+//    public double getRadius() {
+//        return radius;
+//    }
+//
+//    public void setRadius(double radius) {
+//        this.radius = radius;
+//    }
+//
+//    public double getArea() {
+//        return Math.PI * radius * radius;
+//    }
+//    public double getPerimeter() {
+//        return 2 * Math.PI * radius;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return String.format("Circle[%s,radius=%s]", super.toString(), radius);
+//    }
+//}
+//
+//class Rectangle extends Shape {
+//    private double width = 1;
+//    private double length = 1;
+//    public Rectangle() {}
+//    public Rectangle(double width, double length) {
+//        this.width = width;
+//        this.length = length;
+//    }
+//    public Rectangle(double width, double length, String color, boolean filled) {
+//        this.width = width;
+//        this.length = length;
+//        setColor(color);
+//        setFilled(filled);
+//    }
+//
+//    public double getWidth() {
+//        return width;
+//    }
+//
+//    public void setWidth(double width) {
+//        this.width = width;
+//    }
+//
+//    public double getLength() {
+//        return length;
+//    }
+//
+//    public void setLength(double length) {
+//        this.length = length;
+//    }
+//    public double getArea() {
+//        return width * length;
+//    }
+//    public double getPerimeter() {
+//        return 2 * (width + length);
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return String.format("Rectangle[%s,width=%s,length=%s]", super.toString(), width, length);
+//    }
+//}
+//
+//class Square extends Rectangle {
+//    public Square() {}
+//    public Square(double side) {
+//        super(side, side);
+//    }
+//    public Square(double side, String color, boolean filled) {
+//        super(side, side, color, filled);
+//    }
+//    public double getSide() { return getWidth(); }
+//    public void setSide(double side) {
+//        setWidth(side);
+//        setLength(side);
+//    }
+//
+//    public void setWidth(double side) {
+//        setSide(side);
+//    }
+//
+//    public void setLength(double side) {
+//        setSide(side);
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return String.format("Square[%s,width=%s,length=%s]", super.toString(), getSide(), getSide());
+//    }
+//}
+
+//////////////////////////////// POLYMORPHISM AND INTERFACES
+
+//interface ToBeStored {
+//    double weight();
+//}
+//class Book implements ToBeStored{
+//    private String writer;
+//    private String name;
+//    private double weight;
+//
+//    public Book(String writer, String name, double weight) {
+//        this.writer = writer;
+//        this.name = name;
+//        this.weight = weight;
+//    }
+//
+//    @Override
+//    public double weight() {
+//        return weight;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return String.format("%s: %s", writer, name);
+//    }
+//}
+//class CD implements ToBeStored {
+//    private String artist;
+//    private String title;
+//    private int year;
+//
+//    public CD(String artist, String title, int year) {
+//        this.artist = artist;
+//        this.title = title;
+//        this.year = year;
+//    }
+//
+//    @Override
+//    public double weight() {
+//        return 0.1;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return String.format("%s: %s (%d)", artist, title, year);
+//    }
+//}
+//class Box implements ToBeStored {
+//    private double weight = 0;
+//    private double capacity;
+//    private int items = 0;
+//    public Box(double capacity) {
+//        if (capacity < 0) throw new IllegalArgumentException("Capacity cannot be negative!");
+//        this.capacity = capacity;
+//    }
+//    public void add(Book book) {
+//        if ((book.weight() + weight) > capacity) System.out.println("Sorry, the box is full!");
+//        else weight += book.weight(); items++;
+//    }
+//    public void add(CD cd) {
+//        if ((cd.weight() + weight) > capacity) System.out.println("Sorry, the box is full!");
+//        else weight += cd.weight(); items++;
+//    }
+//    public void add(Box box) {
+//        if ((box.weight() + weight) > capacity) System.out.println("Sorry, the box is full!");
+//        else weight += box.weight(); items++;
+//    }
+//
+//    @Override
+//    public double weight() {
+//        return weight;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return String.format("Box: %d things, total weight %.1f kg", items, weight());
+//    }
+//}
+
+//////////////////////////////// ABSTRACT CLASSES
+
+//import java.util.ArrayList;
+//import java.util.Collection;
+//
+//class Thing {
+//    protected String name;
+//    protected double weight;
+//    public Thing(String name, double weight) {
+//        if (weight < 0) throw new IllegalArgumentException("Weight cannot be negative!");
+//        this.name = name;
+//        this.weight = weight;
+//    }
+//    public Thing(String name) {
+//        this.name = name;
+//    }
+//}
+//abstract class Box {
+//    protected double weight = 0;
+//    protected double capacity;
+//    protected ArrayList<String> items = new ArrayList<String>();
+//    public Box(double capacity) {
+//        if (capacity < 0) throw new IllegalArgumentException("Capacity cannot be negative!");
+//        this.capacity = capacity;
+//    }
+//    public abstract void add(Thing thing);
+//
+//    public void add(Collection<Thing> things) {
+//        for (Thing thing : things) {
+//            add(thing);
+//        }
+//    }
+//
+//    public abstract boolean isInTheBox(Thing thing);
+//}
+//class MaxWeightBox extends Box {
+//
+//    public MaxWeightBox(double capacity) {
+//        super(capacity);
+//    }
+//
+//    @Override
+//    public void add(Thing thing) {
+//        if ((thing.weight + weight) > capacity) System.out.println("Sorry, cannot add, the box if full!");
+//        else {
+//            items.add(thing.name);
+//            weight += thing.weight;
+//        }
+//
+//    }
+//
+//    @Override
+//    public boolean isInTheBox(Thing thing) {
+//        return items.contains(thing.name);
+//    }
+//}
+//////////////////////////////// //////////////////////////////// ////////////////////////////////
